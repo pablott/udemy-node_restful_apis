@@ -27,7 +27,7 @@ async function createCourse() {
     // Save a document
     // (async operation)
     const result = await course.save();
-    console.log(result);
+    //console.log(result);
 }
 
 //createCourse();
@@ -77,11 +77,15 @@ async function getCourses() {
         // Count
         //.count() // count documents that match .find filter
 
-        .limit(10)
+        // Pagination
+        .skip((pageNumber - 1) * pageSize)
+        .limit(pageSize)
         .sort({ name: 1 }) //-1 fro reversing order
         .select({ name: 1, tags: 1 })
         ;
     console.log(courses);
 }
 
+
+createCourse();
 getCourses();
